@@ -1,5 +1,5 @@
-import {DrawingApp} from './canvas/canvas.js';
-import {Simulation} from './simulation.js';
+import {Simulation} from './sim/simulation.js';
+import {DrawingApp} from './view/canvas.js';
 
 const sim = new Simulation();
 

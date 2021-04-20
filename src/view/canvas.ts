@@ -1,8 +1,8 @@
 // Demo of using HTML 5 canvas with Typescript
 // Source: https://kernhanda.github.io/tutorial-typescript-canvas-drawing/
 
-import {LocationType} from '../location.js';
-import {Simulation} from '../simulation.js';
+import {LocationType} from '../sim/location.js';
+import {Simulation} from '../sim/simulation.js';
 
 export class DrawingApp {
   private context: CanvasRenderingContext2D;
