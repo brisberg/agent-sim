@@ -1,5 +1,5 @@
-import {Agent, AgentType} from './agent';
-import {Location, LocationType} from './location';
+import {Agent, AgentType} from './agent.js';
+import {Location, LocationType} from './location.js';
 
 /**
  * Simulation class is the primary driver of the simulation. It contains all
@@ -26,5 +26,9 @@ export class Simulation {
   public step(): void {
     this.agents.forEach((a: Agent) => a.activate());
     this.turnCount++;
+  }
+
+  public getMap(): Location[][] {
+    return this.map;
   }
 }
