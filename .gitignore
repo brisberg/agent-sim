@@ -1,0 +1,8 @@
+# OS Files
+.DS_Store
+
+# Generated files
+lib/
+
+# Node Modules
+node_modules/
