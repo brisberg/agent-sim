@@ -2,9 +2,10 @@
   "compilerOptions": {
     "module": "CommonJs",
     "lib": [
-      "ES2018"
+      "ES2018",
+      "DOM"
     ],
-    "target": "ES2018",
+    "target": "ES5",
     "moduleResolution": "Node",
     "outDir": "lib",
     "sourceMap": true,

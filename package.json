@@ -19,7 +19,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "prestart": "yarn build",
+    "start": "open src/index.html",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint \"src/**/*.ts\""
