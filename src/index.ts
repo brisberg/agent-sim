@@ -8,10 +8,12 @@ const canvas = document.getElementsByTagName('canvas')[0];
 const drawingApp = new DrawingApp(canvas, sim);
 
 sim.init();
+drawingApp.refresh();
 
-sim.step();
-drawingApp.refresh();
-sim.step();
-drawingApp.refresh();
-sim.step();
-drawingApp.refresh();
+function step() {
+  sim.step();
+  drawingApp.refresh();
+  console.log(sim.getTurnCount());
+}
+
+document.getElementById('step-button')!.addEventListener('click', step);
