@@ -33,28 +33,40 @@ export class Simulation {
     return this.map;
   }
 
+  public getLocationAt(x: number, y: number): Location {
+    return this.map[x][y];
+  }
+
   public getTurnCount(): number {
     return this.turnCount;
   }
+
+  public getAgents(): Agent[] {
+    return this.agents;
+  }
+
+  public getAgentsAt(x: number, y: number): Agent[] {
+    return this.agents.filter((a: Agent) => a.x === x && a.y === y);
+  }
 }
 
-export function initialMap(): Location[][] {
+export function initialMap(sim: Simulation): Location[][] {
   const map = new Array(50);
   for (let i = 0; i < 50; i++) {
     const row = new Array(50);
     for (let j = 0; j < 50; j++) {
-      row[j] = new Location(i, j, LocationType.FOREST);
+      row[j] = new Location(i, j, LocationType.FOREST, sim);
     }
     map[i] = row;
   }
   return map;
 }
 
-export function initialAgents(): Agent[] {
+export function initialAgents(sim: Simulation): Agent[] {
   const agents = [];
   for (let i = 0; i < 10; i++) {
-    agents.push(new Agent(`${i}`, AgentType.VILLAGER));
-    agents.push(new Agent(`${i + 10}`, AgentType.GOBLIN));
+    agents.push(new Agent(`${i}`, AgentType.VILLAGER, sim, i, 0));
+    agents.push(new Agent(`${i + 10}`, AgentType.GOBLIN, sim, i, 20));
   }
   return agents;
 }

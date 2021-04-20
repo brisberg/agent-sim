@@ -19,9 +19,9 @@ describe('Simulation', () => {
     });
 
     it('should activate all the agents in the simulation', () => {
-      const agent = new Agent('1', AgentType.VILLAGER);
-      spyOn(agent, 'activate');
       const sim = new Simulation();
+      const agent = new Agent('1', AgentType.VILLAGER, sim, 0, 0);
+      spyOn(agent, 'activate');
       sim.init([], [agent]);
 
       sim.step();
