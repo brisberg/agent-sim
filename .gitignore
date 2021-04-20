@@ -2,7 +2,8 @@
 .DS_Store
 
 # Generated files
-lib/
+dist/
+
 
 # Node Modules
 node_modules/

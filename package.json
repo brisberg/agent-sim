@@ -2,8 +2,8 @@
   "name": "@brisberg/homeworlds",
   "version": "0.1.0",
   "description": "Implementation of the Homeworlds space conquest board game.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "keywords": [
     "typescript"
   ],
@@ -20,8 +20,9 @@
   },
   "scripts": {
     "prestart": "yarn build",
-    "start": "serve lib",
-    "build": "tsc && cp src/index.html lib/index.html",
+    "start": "serve dist",
+    "build": "tsc",
+    "postbuild": "cp public/* dist/",
     "test": "jest",
     "lint": "eslint \"src/**/*.ts\""
   },
