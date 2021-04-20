@@ -1,5 +1,5 @@
-import {Agent, AgentType} from './agent';
-import {Simulation} from './simulation';
+import {Agent, AgentType} from './agent.js';
+import {Simulation} from './simulation.js';
 
 describe('Simulation', () => {
   it('should begin at turn 0', () => {

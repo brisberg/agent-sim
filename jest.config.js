@@ -22,4 +22,9 @@ module.exports = {
   testMatch: ['**/*.spec.ts', '!**/node_modules/**', '!**/lib/**'],
 
   // -- Add package specific configurations below here
+
+  // Rewrites ESM module imports to TS module imports for Jest
+  moduleNameMapper: {
+    "^(.*)\\.js$": "$1",
+  },
 };

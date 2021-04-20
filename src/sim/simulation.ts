@@ -1,5 +1,5 @@
-import {Agent, AgentType} from './agent';
-import {Location, LocationType} from './location';
+import {Agent, AgentType} from './agent.js';
+import {Location, LocationType} from './location.js';
 
 /**
  * Simulation class is the primary driver of the simulation. It contains all
