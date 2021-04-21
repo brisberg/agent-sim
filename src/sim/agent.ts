@@ -23,6 +23,6 @@ export abstract class Agent extends SimEntity {
   abstract activate(): Action|null;
 
   protected senseEnvironment(): Agent[] {
-    return this.sim.getAgentsAt(this.x, this.y);
+    return this.sim.getAgentsNear(this.x, this.y, 3.5);
   }
 }

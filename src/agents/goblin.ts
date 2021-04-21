@@ -1,9 +1,9 @@
-import {RandomMove} from '../actions/random-move';
-import {Action} from '../sim/action';
-import {Agent} from '../sim/agent';
-import {Simulation} from '../sim/simulation';
+import {RandomMove} from '../actions/random-move.js';
+import {Action} from '../sim/action.js';
+import {Agent} from '../sim/agent.js';
+import {Simulation} from '../sim/simulation.js';
 
-import {AgentType} from '.';
+import {AgentType} from './index.js';
 
 /** Goblin agent seek to build cottages and plant crops. */
 export class Goblin extends Agent {

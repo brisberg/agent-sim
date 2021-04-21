@@ -1,3 +1,4 @@
+import {Forest} from '../agents/forest.js';
 import {Goblin} from '../agents/goblin.js';
 import {Villager} from '../agents/villager.js';
 import {Action} from './action.js';
@@ -27,12 +28,12 @@ export class Simulation {
       }
     });
 
-    if (this.map.length > 0) {
-      // TODO: Remove this random update
-      const randX = Math.floor(Math.random() * this.map.length);
-      const randY = Math.floor(Math.random() * this.map[0].length);
-      this.map[randX][randY] = TerrainType.WATER;
-    }
+    // if (this.map.length > 0) {
+    //   // TODO: Remove this random update
+    //   const randX = Math.floor(Math.random() * this.map.length);
+    //   const randY = Math.floor(Math.random() * this.map[0].length);
+    //   this.map[randX][randY] = TerrainType.WATER;
+    // }
 
     this.turnCount++;
   }
@@ -60,6 +61,22 @@ export class Simulation {
   public getAgentsAt(x: number, y: number): Agent[] {
     return this.agents.filter((a: Agent) => a.x === x && a.y === y);
   }
+
+  /** Returns all agents with in circular radius of the given range */
+  public getAgentsNear(x: number, y: number, range: number): Agent[] {
+    const sqRange = range * range;
+    return this.agents.filter((a: Agent) => {
+      return (a.x - x) * (a.x - x) + (a.y - y) <= sqRange;
+    });
+  }
+
+  public removeAgent(agent: Agent): void {
+    this.agents = this.agents.filter((a: Agent) => a !== agent);
+  }
+
+  public addAgent(agent: Agent): void {
+    this.agents.push(agent);
+  }
 }
 
 export function initialMap(): TerrainType[][] {
@@ -67,7 +84,16 @@ export function initialMap(): TerrainType[][] {
   for (let i = 0; i < 50; i++) {
     const row = new Array<TerrainType>(50);
     for (let j = 0; j < 50; j++) {
-      row[j] = TerrainType.LOWLAND;
+      const random = Math.random() * 4;
+      if (random < 1) {
+        row[j] = TerrainType.PLAINS;
+      } else if (random < 2) {
+        row[j] = TerrainType.LOWLAND;
+      } else if (random < 3) {
+        row[j] = TerrainType.MOUNTAIN;
+      } else if (random < 4) {
+        row[j] = TerrainType.WATER;
+      }
     }
     map[i] = row;
   }
@@ -79,6 +105,13 @@ export function initialAgents(sim: Simulation): Agent[] {
   for (let i = 0; i < 10; i++) {
     agents.push(new Villager(`${i}`, sim, i, 0));
     agents.push(new Goblin(`${i + 10}`, sim, i, 20));
+  }
+
+  // Generate random forests
+  for (let j = 0; j < 300; j++) {
+    agents.push(new Forest(
+        `forest${j}`, sim, Math.floor(Math.random() * 50),
+        Math.floor(Math.random() * 50), 1));
   }
   return agents;
 }

@@ -1,5 +1,3 @@
-import {Simulation} from './simulation.js';
-
 /**
  * Terrain represents a single cell in the simulation map. Terrain can have
  * different types, attributes, and other features. Multiple agents can occupy

@@ -1,5 +1,5 @@
-import {Action} from '../sim/action';
-import {Simulation} from '../sim/simulation';
+import {Action} from '../sim/action.js';
+import {Simulation} from '../sim/simulation.js';
 
 /** Random Move Action */
 export class RandomMove extends Action {

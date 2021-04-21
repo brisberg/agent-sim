@@ -44,7 +44,7 @@ export class DrawingApp {
       for (let j = 0; j < map[i].length; ++j) {
         const loc = map[i][j];
         if (loc === TerrainType.LOWLAND) {
-          context.fillStyle = 'green';
+          context.fillStyle = 'teal';
         } else if (loc === TerrainType.WATER) {
           context.fillStyle = 'blue';
         } else if (loc === TerrainType.MOUNTAIN) {
@@ -53,7 +53,7 @@ export class DrawingApp {
           context.fillStyle = 'yellow';
         }
 
-        context.fillRect(i * 10 + 11, j * 10 + 11, 9, 9);
+        context.fillRect(i * 10 + 11, j * 10 + 11, 8, 8);
       }
     }
 
@@ -63,9 +63,13 @@ export class DrawingApp {
         context.fillStyle = 'aqua';
       } else if (agent.type === AgentType.GOBLIN) {
         context.fillStyle = 'red';
+      } else if (agent.type === AgentType.FOREST) {
+        context.fillStyle = 'green';
+      } else if (agent.type === AgentType.COTTAGE) {
+        context.fillStyle = 'brown';
       }
 
-      context.fillRect(agent.x * 10 + 11, agent.y * 10 + 11, 9, 9);
+      context.fillRect(agent.x * 10 + 13, agent.y * 10 + 13, 4, 4);
     }
   }
 
