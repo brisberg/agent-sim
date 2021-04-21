@@ -21,6 +21,10 @@ export class Agent extends SimEntity {
   public activate(): void {
     console.log(`[${this.type}:${this.id}]: Agent activated`);
   }
+
+  private senseEnvironment(): Agent[] {
+    return this.sim.getAgentsAt(this.x, this.y);
+  }
 }
 
 export enum AgentType {
