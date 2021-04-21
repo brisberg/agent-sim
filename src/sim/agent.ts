@@ -1,4 +1,5 @@
-import {Action, RandomMove} from './action.js';
+import {AgentType} from '../agents/index.js';
+import {Action} from './action.js';
 import {SimEntity} from './entity.js';
 import {Simulation} from './simulation.js';
 
@@ -7,7 +8,7 @@ import {Simulation} from './simulation.js';
  * behavior rules and senses. When agents are activated they will make changes
  * to themselves or the environment.
  */
-export class Agent extends SimEntity {
+export abstract class Agent extends SimEntity {
   public constructor(
       public readonly id: string,
       public readonly type: AgentType,
@@ -19,19 +20,9 @@ export class Agent extends SimEntity {
   }
 
   /** @override */
-  public activate(): Action|null {
-    const env = this.senseEnvironment();
+  abstract activate(): Action|null;
 
-    const action = new RandomMove(this);
-    return action;
-  }
-
-  private senseEnvironment(): Agent[] {
+  protected senseEnvironment(): Agent[] {
     return this.sim.getAgentsAt(this.x, this.y);
   }
-}
-
-export enum AgentType {
-  VILLAGER = 'villager',
-  GOBLIN = 'goblin',
 }

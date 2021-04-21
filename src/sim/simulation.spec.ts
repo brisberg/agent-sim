@@ -1,4 +1,4 @@
-import {Agent, AgentType} from './agent.js';
+import {Villager} from '../agents/villager.js';
 import {Simulation} from './simulation.js';
 
 describe('Simulation', () => {
@@ -20,7 +20,7 @@ describe('Simulation', () => {
 
     it('should activate all the agents in the simulation', () => {
       const sim = new Simulation();
-      const agent = new Agent('1', AgentType.VILLAGER, sim, 0, 0);
+      const agent = new Villager('1', sim, 0, 0);
       spyOn(agent, 'activate');
       sim.init([], [agent]);
 

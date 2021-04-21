@@ -1,7 +1,7 @@
 // Demo of using HTML 5 canvas with Typescript
 // Source: https://kernhanda.github.io/tutorial-typescript-canvas-drawing/
 
-import {AgentType} from '../sim/agent.js';
+import {AgentType} from '../agents/index.js';
 import {TerrainType} from '../sim/location.js';
 import {Simulation} from '../sim/simulation.js';
 

@@ -1,6 +1,8 @@
+import {Goblin} from '../agents/goblin.js';
+import {Villager} from '../agents/villager.js';
 import {Action} from './action.js';
-import {Agent, AgentType} from './agent.js';
-import {Terrain, TerrainType} from './location.js';
+import {Agent} from './agent.js';
+import {TerrainType} from './location.js';
 
 /**
  * Simulation class is the primary driver of the simulation. It contains all
@@ -75,8 +77,8 @@ export function initialMap(): TerrainType[][] {
 export function initialAgents(sim: Simulation): Agent[] {
   const agents = [];
   for (let i = 0; i < 10; i++) {
-    agents.push(new Agent(`${i}`, AgentType.VILLAGER, sim, i, 0));
-    agents.push(new Agent(`${i + 10}`, AgentType.GOBLIN, sim, i, 20));
+    agents.push(new Villager(`${i}`, sim, i, 0));
+    agents.push(new Goblin(`${i + 10}`, sim, i, 20));
   }
   return agents;
 }
