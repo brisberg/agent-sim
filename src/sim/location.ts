@@ -1,5 +1,5 @@
-import {SimEntity} from './entity';
-import {Simulation} from './simulation';
+import {SimEntity} from './entity.js';
+import {Simulation} from './simulation.js';
 
 /**
  * Location represents a single cell in the simulation map. Locations can have

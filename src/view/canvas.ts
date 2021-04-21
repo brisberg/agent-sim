@@ -1,6 +1,7 @@
 // Demo of using HTML 5 canvas with Typescript
 // Source: https://kernhanda.github.io/tutorial-typescript-canvas-drawing/
 
+import {AgentType} from '../sim/agent.js';
 import {LocationType} from '../sim/location.js';
 import {Simulation} from '../sim/simulation.js';
 
@@ -36,10 +37,9 @@ export class DrawingApp {
 
   private redraw() {
     this.clearCanvas();
-
-    const map = this.sim.getMap();
     const context = this.context;
 
+    const map = this.sim.getMap();
     for (let i = 0; i < map.length; ++i) {
       for (let j = 0; j < map[i].length; ++j) {
         const loc = map[i][j];
@@ -53,6 +53,17 @@ export class DrawingApp {
 
         context.fillRect(i * 10 + 11, j * 10 + 11, 9, 9);
       }
+    }
+
+    const agents = this.sim.getAgents();
+    for (const agent of agents) {
+      if (agent.type === AgentType.VILLAGER) {
+        context.fillStyle = 'blue';
+      } else if (agent.type === AgentType.GOBLIN) {
+        context.fillStyle = 'red';
+      }
+
+      context.fillRect(agent.x * 10 + 11, agent.y * 10 + 11, 9, 9);
     }
   }
 

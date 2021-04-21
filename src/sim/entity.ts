@@ -1,4 +1,4 @@
-import {Simulation} from './simulation';
+import {Simulation} from './simulation.js';
 
 /** SimEntity is the base class for all entities managed by the simulation. */
 export abstract class SimEntity {
