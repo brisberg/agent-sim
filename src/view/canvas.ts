@@ -2,7 +2,7 @@
 // Source: https://kernhanda.github.io/tutorial-typescript-canvas-drawing/
 
 import {AgentType} from '../sim/agent.js';
-import {LocationType} from '../sim/location.js';
+import {TerrainType} from '../sim/location.js';
 import {Simulation} from '../sim/simulation.js';
 
 export class DrawingApp {
@@ -43,11 +43,13 @@ export class DrawingApp {
     for (let i = 0; i < map.length; ++i) {
       for (let j = 0; j < map[i].length; ++j) {
         const loc = map[i][j];
-        if (loc.type === LocationType.FOREST) {
+        if (loc === TerrainType.LOWLAND) {
           context.fillStyle = 'green';
-        } else if (loc.type === LocationType.VILLAGE) {
-          context.fillStyle = 'brown';
-        } else if (loc.type === LocationType.ROAD) {
+        } else if (loc === TerrainType.WATER) {
+          context.fillStyle = 'blue';
+        } else if (loc === TerrainType.MOUNTAIN) {
+          context.fillStyle = 'grey';
+        } else if (loc === TerrainType.PLAINS) {
           context.fillStyle = 'yellow';
         }
 
@@ -58,7 +60,7 @@ export class DrawingApp {
     const agents = this.sim.getAgents();
     for (const agent of agents) {
       if (agent.type === AgentType.VILLAGER) {
-        context.fillStyle = 'blue';
+        context.fillStyle = 'aqua';
       } else if (agent.type === AgentType.GOBLIN) {
         context.fillStyle = 'red';
       }

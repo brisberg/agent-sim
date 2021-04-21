@@ -19,20 +19,15 @@ export class Agent extends SimEntity {
   }
 
   /** @override */
-  public activate() {
-    console.log(`[${this.type}:${this.id}]: Agent activated`);
+  public activate(): Action|null {
     const env = this.senseEnvironment();
 
     const action = new RandomMove(this);
-    this.executeAction(action);
+    return action;
   }
 
   private senseEnvironment(): Agent[] {
     return this.sim.getAgentsAt(this.x, this.y);
-  }
-
-  protected executeAction(action: Action): void {
-    action.execute(this.sim);
   }
 }
 

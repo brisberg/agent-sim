@@ -1,39 +1,49 @@
+import {Action} from './action.js';
 import {Agent, AgentType} from './agent.js';
-import {Location, LocationType} from './location.js';
+import {Terrain, TerrainType} from './location.js';
 
 /**
  * Simulation class is the primary driver of the simulation. It contains all
  * the global state of the simulation and all the agents.
  */
 export class Simulation {
-  private map: Location[][] = [];
+  private map: TerrainType[][] = [];
   private agents: Agent[] = [];
   private turnCount = 0;
 
-  public init(map: Location[][] = [], agents: Agent[] = []): void {
+  public init(map: TerrainType[][] = [], agents: Agent[] = []): void {
     this.map = map;
     this.agents = agents;
   }
 
   /** Run a simulation step */
   public step(): void {
-    this.agents.forEach((a: Agent) => a.activate());
+    this.agents.forEach((a: Agent) => {
+      const action = a.activate();
+      if (action) {
+        this.executeAction(action);
+      }
+    });
 
     if (this.map.length > 0) {
       // TODO: Remove this random update
       const randX = Math.floor(Math.random() * this.map.length);
       const randY = Math.floor(Math.random() * this.map[0].length);
-      this.map[randX][randY].type = LocationType.VILLAGE;
+      this.map[randX][randY] = TerrainType.WATER;
     }
 
     this.turnCount++;
   }
 
-  public getMap(): Location[][] {
+  private executeAction(action: Action): void {
+    action.execute(this);
+  }
+
+  public getMap(): TerrainType[][] {
     return this.map;
   }
 
-  public getLocationAt(x: number, y: number): Location {
+  public getTerrainAt(x: number, y: number): TerrainType {
     return this.map[x][y];
   }
 
@@ -50,12 +60,12 @@ export class Simulation {
   }
 }
 
-export function initialMap(sim: Simulation): Location[][] {
-  const map = new Array(50);
+export function initialMap(): TerrainType[][] {
+  const map = new Array<TerrainType[]>(50);
   for (let i = 0; i < 50; i++) {
-    const row = new Array(50);
+    const row = new Array<TerrainType>(50);
     for (let j = 0; j < 50; j++) {
-      row[j] = new Location(i, j, LocationType.FOREST, sim);
+      row[j] = TerrainType.LOWLAND;
     }
     map[i] = row;
   }

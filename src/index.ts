@@ -7,7 +7,7 @@ const canvas = document.getElementsByTagName('canvas')[0];
 
 const drawingApp = new DrawingApp(canvas, sim);
 
-sim.init(initialMap(sim), initialAgents(sim));
+sim.init(initialMap(), initialAgents(sim));
 drawingApp.refresh();
 
 function step() {
